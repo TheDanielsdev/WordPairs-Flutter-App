@@ -63,21 +63,78 @@ class RandomWordsState extends State<RandomWords> {
           ListTile.divideTiles(context: context, tiles: tiles).toList();
 
       return Scaffold(
-          appBar: AppBar(
-            title: Text('Saved WordPairs'),
-          ),
-          body: ListView(children: divided));
+        appBar: AppBar(
+          title: Text('Saved WordPairs'),
+        ),
+        body: ListView(children: divided),
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            type: BottomNavigationBarType.fixed,
+            iconSize: 20,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                backgroundColor: Colors.purple[900],
+              ),
+              BottomNavigationBarItem(
+                icon: IconButton(
+                    icon: Icon(Icons.favorite_border), onPressed: _pushSaved),
+                title: Text('Saved Pairs'),
+                backgroundColor: Colors.purple[900],
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                title: Text('Settings'),
+                backgroundColor: Colors.purple[900],
+              )
+            ],
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            }),
+      );
     }));
   }
 
+  int _currentIndex = 0;
+  final tabs = [Center(child: RandomWords())];
+
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('WordPair Generator'),
-          actions: <Widget>[
-            IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
-          ],
-        ),
-        body: _buildList());
+      appBar: AppBar(
+        title: Text('WordPair Generator'),
+      ),
+      body: _buildList(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 20,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+            backgroundColor: Colors.purple[900],
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+                icon: Icon(Icons.favorite_border), onPressed: _pushSaved),
+            title: Text('Saved Pairs'),
+            backgroundColor: Colors.purple[900],
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+            backgroundColor: Colors.purple[900],
+          )
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+    );
   }
 }
