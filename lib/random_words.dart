@@ -99,7 +99,6 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   int _currentIndex = 0;
-  final tabs = [Center(child: RandomWords())];
 
   Widget build(BuildContext context) {
     return Scaffold(
